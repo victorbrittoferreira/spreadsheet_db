@@ -1,0 +1,13 @@
+{% block content %}
+<label>
+    Coloque a planilha a ser carregada.
+</label>
+
+    <form method="POST" enctype="multipart/form-data"> 
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Upload File</button>
+    </form>
+
+
+{% endblock content %}

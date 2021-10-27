@@ -1,0 +1,83 @@
+{% block content %}
+
+
+<h1>Formulario de Filtro de Data vai aqui</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    from:<input type="date" name="fromdate"/>
+    to:<input type="date" name="todate"/>
+    <input type="submit"value="Search"/>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">NomeCliente</th>
+                <th scope="col">created_at</th>
+                <th scope="col">File</th>
+                <th scope="col">external_key</th>
+                <th scope="col">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for l in planilha %}
+            <tr>
+                <td>{{l.id}}</td>
+                <td>{{l.client_name}}</td>
+                <td>{{l.created_at}}</td>
+                <td>{{l.external_key}}</td>
+                <td><a href="{% url 'list-details-xls' l.id %}"> Details {{l.id}}</a></td>
+                <td><a href="{% url 'delete-xls' l.id %}"> Delete {{l.id}}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+
+
+
+
+<h1>Sheet's list'</h1>
+<h3>New XLS</h3>
+<label for="">New Planilha</label><br>
+<a href="{% url 'add-xls' %}">Input new Sheet</a>
+<br>
+<h3>API</h3>
+<label for="">API List endpoint</label><br>
+<a href="{% url 'api-planilha-list' %}">List Planilhas API</a>
+<br>
+<h6>to see others endpoints check the urls list at 'backend_portifolio/url.py'</h6>
+
+<table>
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Cliente Name</th>
+            <th scope="col">Created at</th>
+            <th scope="col">External Key</th>
+            <th scope="col">File</th>
+            <th scope="col">Details</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for l in planilha %}
+        <tr>
+            <td>{{l.id}}</td>
+            <td>{{l.client_name}}</td>
+            <td>{{l.created_at}}</td>
+            <td>{{l.external_key}}</td>
+            <td>{{l.file}}</td>
+            <td><a href="{% url 'list-details-xls' l.id %}"> Details {{l.id}}</a></td>
+            <td><a href="{% url 'delete-xls' l.id %}"> Delete {{l.id}}</a></td>
+
+            <td>
+                <a>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

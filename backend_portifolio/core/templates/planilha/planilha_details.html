@@ -1,0 +1,45 @@
+{% block content %}
+
+
+<h1>Details's List'</h1>
+
+<label for="">List Planilha</label><br>
+<a href="{% url 'list-all-xls' %}">List Planilhas</a><br>
+
+<table>
+    <thead>
+        <th>Region</th>
+        <th>BuidingId</th>
+        <th>CostCentre</th>
+        <th>TelcoCode</th>
+        <th>BuildingCurrentUse</th>
+        <th>Country</th>
+        <th>LocalCurrencyName</th>
+        <th>CostDate</th>
+        <th>BudFXRate</th>
+        <th>RentLCY</th>
+        <th>UtilitiesLCY</th>
+        <th>FacilityLCY</th>
+        <th>SuppliesLCY</th>
+
+    </thead>
+    {% for c in context %}
+    <tbody>
+        <td>{{c.Region}}</td>
+        <td>{{c.BuidingId}}</td>
+        <td>{{c.CostCentre}}</td>
+        <td>{{c.TelcoCode}}</td>
+        <td>{{c.BuildingCurrentUse}}</td>
+        <td>{{c.Country}}</td>
+        <td>{{c.LocalCurrencyName}}</td>
+        <td>{{c.CostDate}}</td>
+        <td>{{c.BudFXRate}}</td>
+        <td>{{c.RentLCY}}</td>
+        <td>{{c.UtilitiesLCY}}</td>
+        <td>{{c.FacilityLCY}}</td>
+        <td>{{c.SuppliesLCY}}</td>
+    </tbody>
+    {% endfor %}
+</table>
+
+{% endblock content %}
